@@ -1,0 +1,9 @@
+# Django~=4.2.3
+# djongo
+# pytz # fix can not use djngo
+# pymongo==3.12.3
+# sqlparse ==0.2.4 # fix error when migration
+psycopg2
+psycopg2-binary
+python-dotenv~=1.0.0
+Pillow # store ImageField
