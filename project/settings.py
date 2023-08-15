@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 
@@ -23,13 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p#-9kzv4p$d*c@ppa5-aq*vwivzj5(i(k+_nz5259ms8l-o6)g'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = ['realestate.katoengineer.com', 'localhost']
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG')
+
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://realestate.katoengineer.com', 'https://localhost']
 
 # Application definition
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',  # allow to use humanize
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -86,14 +89,15 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-dotenv_path = os.path.join(os.path.dirname(__file__), './../postgresql/.env')
-if not os.path.isfile('/.dockerenv'):
-    load_dotenv(dotenv_path)
+# dotenv_path = os.path.join(os.path.dirname(__file__), './../postgresql/.env')
+# if not os.path.isfile('/.dockerenv'):
+#     load_dotenv(dotenv_path)
 
-DB_NAME = os.environ.get("POSTGRES_DB")
-DB_USER = os.environ.get("POSTGRES_USER")
-DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-DB_HOST = os.environ.get("POSTGRES_ENDPOINT")
+DB_NAME = config("AWS_DB")
+DB_USER = config("AWS_USER")
+DB_PASSWORD = config("AWS_PASSWORD")
+DB_HOST = config("AWS_ENDPOINT")
+DB_PORT = config("AWS_PORT")
 
 # MONGO_URI = os.environ.get("MONGO_URI")
 #
@@ -114,7 +118,8 @@ DATABASES = {
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST
+        'HOST': DB_HOST,
+        'PORT': DB_PORT
     }
 }
 
@@ -177,3 +182,36 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'quan.ngo@advesa.com'
 EMAIL_HOST_PASSWORD = 'rnbcjpseflmmjikt'
+
+USE_S3 = True
+# AWS credentials
+if USE_S3:
+    AWS_ACCESS_KEY_ID = 'AKIATCQNDK5VCF4J4N5I'
+    AWS_SECRET_ACCESS_KEY = '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'
+
+    # S3 configuration setting
+    AWS_STORAGE_BUCKET_NAME = 'djangorealestate'
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+    AWS_S3_FILE_OVERWRITE = False  # Keep both file with same name
+
+    # Media settings
+    MEDIA_URL = (
+        'https://%s/' % AWS_S3_CUSTOM_DOMAIN if 'AWS_S3_CUSTOM_DOMAIN' in locals() else
+        f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
+    )
+
+    # Set the media root to the location where you want to store media files
+    # For example, if you want to store them in a "media" folder within your S3 bucket
+    MEDIA_ROOT = 'media/'  # Change this path as needed
+
+    # Optionally, you can define additional CORS settings for media files
+    # For example, allowing all origins to access media files
+    AWS_S3_OBJECT_PARAMETERS = {
+        'ACL': 'public-read',
+        'CacheControl': 'max-age=86400',
+    }

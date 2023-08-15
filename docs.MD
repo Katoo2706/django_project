@@ -62,6 +62,12 @@ DATABASES = {
 }
 ```
 
+Otherwise, backend database can be AWS RDS
+
+### Environment management
+
+> [Use Python Decouple with Django](https://dontrepeatyourself.org/post/how-to-use-python-decouple-with-django/#:~:text=Now%20we%20need%20to%20use,'ENGINE'%3A%20'django.)
+
 ```
 Flow: 
 - settings.py (INSTALLED_APPS > DATABASES (EMAIL CONFIG))
