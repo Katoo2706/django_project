@@ -183,35 +183,35 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'quan.ngo@advesa.com'
 EMAIL_HOST_PASSWORD = 'rnbcjpseflmmjikt'
 
-USE_S3 = True
-# AWS credentials
-if USE_S3:
-    AWS_ACCESS_KEY_ID = 'AKIATCQNDK5VCF4J4N5I'
-    AWS_SECRET_ACCESS_KEY = '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'
-
-    # S3 configuration setting
-    AWS_STORAGE_BUCKET_NAME = 'djangorealestate'
-
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-    AWS_S3_FILE_OVERWRITE = False  # Keep both file with same name
-
-    # Media settings
-    MEDIA_URL = (
-        'https://%s/' % AWS_S3_CUSTOM_DOMAIN if 'AWS_S3_CUSTOM_DOMAIN' in locals() else
-        f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
-    )
-
-    # Set the media root to the location where you want to store media files
-    # For example, if you want to store them in a "media" folder within your S3 bucket
-    MEDIA_ROOT = 'media/'  # Change this path as needed
-
-    # Optionally, you can define additional CORS settings for media files
-    # For example, allowing all origins to access media files
-    AWS_S3_OBJECT_PARAMETERS = {
-        'ACL': 'public-read',
-        'CacheControl': 'max-age=86400',
-    }
+# USE_S3 = True
+# # AWS credentials
+# if USE_S3:
+#     AWS_ACCESS_KEY_ID = 'AKIATCQNDK5VCF4J4N5I'
+#     AWS_SECRET_ACCESS_KEY = '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'
+#
+#     # S3 configuration setting
+#     AWS_STORAGE_BUCKET_NAME = 'djangorealestate'
+#
+#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+#     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+#
+#     AWS_S3_FILE_OVERWRITE = False  # Keep both file with same name
+#
+#     # Media settings
+#     MEDIA_URL = (
+#         'https://%s/' % AWS_S3_CUSTOM_DOMAIN if 'AWS_S3_CUSTOM_DOMAIN' in locals() else
+#         f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
+#     )
+#
+#     # Set the media root to the location where you want to store media files
+#     # For example, if you want to store them in a "media" folder within your S3 bucket
+#     MEDIA_ROOT = 'media/'  # Change this path as needed
+#
+#     # Optionally, you can define additional CORS settings for media files
+#     # For example, allowing all origins to access media files
+#     AWS_S3_OBJECT_PARAMETERS = {
+#         'ACL': 'public-read',
+#         'CacheControl': 'max-age=86400',
+#     }
