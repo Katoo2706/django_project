@@ -1,4 +1,4 @@
-~~# DIGITAL OCEAN DJANGO DEPLOYMENT
+# DIGITAL OCEAN DJANGO DEPLOYMENT
 
 Reference: [Django Deployment to Ubuntu 18.04](https://gist.github.com/bradtraversy/cfa565b879ff1458dba08f423cb01d71)
 
@@ -137,8 +137,25 @@ Install dependencies on project and add to git
 pip freeze > requirements.txt
 ```
 
+Generate access token for a repo:
+> Setting / Personal access tokens / Tokens (classic)
+
 Clone project into the app folder on the server [Either HTTPs or setup SSH keys]
 ```
-# After create an auth2:TOKEN on your Account
 git clone https://[auth2:TOKEN]@github.com/Katoo2706/django_project.git
 ```
+
+Install pip modules from requirements
+```bash
+pip install --no-cache-dir --ignore-installed -r django_project/requirements.txt
+```
+## Local Settings Setup
+
+Add code to your settings.py file and push to server
+```python
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+```
+

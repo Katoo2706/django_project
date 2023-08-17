@@ -99,19 +99,6 @@ DB_PASSWORD = config("AWS_PASSWORD")
 DB_HOST = config("AWS_ENDPOINT")
 DB_PORT = config("AWS_PORT")
 
-# MONGO_URI = os.environ.get("MONGO_URI")
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'real_estate',
-#         'ENFORCE_SCHEMA': False,
-#         'CLIENT': {
-#             'host': MONGO_URI
-#         }
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -215,3 +202,8 @@ EMAIL_HOST_PASSWORD = 'rnbcjpseflmmjikt'
 #         'ACL': 'public-read',
 #         'CacheControl': 'max-age=86400',
 #     }
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
