@@ -1,33 +1,42 @@
 ## Start
-Star the project
-```bash
-django-admin startproject project . 
-```
 
-Create app pages
-```bash
-python manage.py startapp pages
-```
+Start project
+> django-admin startproject pretest
 
-Run the server
-```bash
-python manage.py runserver 
-```
 
-Run the server
-```bash
-python manage.py runserver 
-```
+Collect statistic
+> python manage.py collectstatic
 
-Collect static
-```bash
-python manage.py collectstatic
-```
+Runserver
+> python manage.py runserver
 
+#### Project structure:
 ```
 .
 ├── README.md
-├── app_requirement.MD
+├── accounts
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── aws_deployment.MD
+├── contacts
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── digital_ocean_deployment.MD
 ├── docs.MD
 ├── listings
 │   ├── __init__.py
@@ -76,6 +85,10 @@ python manage.py collectstatic
 │   └── views.py
 ├── requirements.txt
 └── templates
+    ├── accounts
+    │   ├── dashboard.html
+    │   ├── login.html
+    │   └── register.html
     ├── admin
     │   └── base_site.html
     ├── base.html
@@ -83,9 +96,14 @@ python manage.py collectstatic
     │   ├── listing.html
     │   ├── listings.html
     │   └── search.html
-    └── pages
-        ├── about.html
-        └── index.html
+    ├── pages
+    │   ├── about.html
+    │   └── index.html
+    └── partials
+        ├── _alerts.html
+        ├── _footer.html
+        ├── _navbar.html
+        └── _topbar.html
 
-13 directories, 48 files
+19 directories, 73 files
 ```

@@ -1,4 +1,4 @@
-# DIGITAL OCEAN DJANGO DEPLOYMENT
+~~# DIGITAL OCEAN DJANGO DEPLOYMENT
 
 Reference: [Django Deployment to Ubuntu 18.04](https://gist.github.com/bradtraversy/cfa565b879ff1458dba08f423cb01d71)
 
@@ -130,7 +130,15 @@ python3 -m venv ./venv
 source venv/bin/activate
 ```
 
-Install dependencies
+## Git & Upload
+
+Install dependencies on project and add to git
 ```bash
-pip 
+pip freeze > requirements.txt
+```
+
+Clone project into the app folder on the server [Either HTTPs or setup SSH keys]
+```
+# After create an auth2:TOKEN on your Account
+git clone https://[auth2:TOKEN]@github.com/Katoo2706/django_project.git
 ```
