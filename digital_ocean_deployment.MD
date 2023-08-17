@@ -159,3 +159,30 @@ except ImportError:
     pass
 ```
 
+Or using python decouple
+
+After pull the latest code, make migrations and collect statistic
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Create superuser
+```bash
+python manage.py createsuperuser
+```
+
+Collect static
+```bash
+python manage.py collectstatic
+```
+
+Create exception for port 8000
+```bash
+sudo ufw allow 8000
+```
+
+Run the server
+```bash
+python manage.py runserver 0.0.0.0:8000
+```
