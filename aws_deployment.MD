@@ -1,5 +1,6 @@
-### Create AWS Root account & IAM user (developers role)
+# AWS DJANGO APPLICATION DEPLOYMENT
 
+### Create AWS Root account & IAM user (developers role)
 
 ### Set up MFA
 
