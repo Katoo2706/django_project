@@ -297,15 +297,15 @@ sudo nano /etc/nginx/sites-available/django_project
 ```
 server {
     listen 80;
-    server_name 128.199.108.7;
+    server_name 128.199.108.7 realestate.katoengineer.com;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/djangoadmin/pyapps/django_project;
+        alias /home/djangoadmin/pyapps/django_project/static/;
     }
     
     location /media/ {
-        root /home/djangoadmin/pyapps/django_project;    
+        alias /home/djangoadmin/pyapps/django_project/static/;    
     }
 
     location / {
@@ -389,6 +389,14 @@ server {
     server_name xxx.xxx.xxx.xxx example.com www.example.com;
 }
 ```
+
+[//]: # (Allow read access)
+
+[//]: # (```bash)
+
+[//]: # (sudo chown -R nginx:nginx /home/djangoadmin/pyapps/django_project/static/)
+
+[//]: # (```)
 
 ### Reload NGINX & Gunicorn
 
