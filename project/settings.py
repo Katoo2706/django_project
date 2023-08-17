@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # if not os.path.isfile('/.dockerenv'):
 #     load_dotenv(dotenv_path)
 
-DB_NAME = config("AWS_DB")
-DB_USER = config("AWS_USER")
-DB_PASSWORD = config("AWS_PASSWORD")
-DB_HOST = config("AWS_ENDPOINT")
-DB_PORT = config("AWS_PORT")
+DB_NAME = config("UBUNTU_DB")
+DB_USER = config("UBUNTU_USER")
+DB_PASSWORD = config("UBUNTU_PASSWORD")
+DB_HOST = config("UBUNTU_HOST")
+DB_PORT = config("UBUNTU_PORT")
 
 DATABASES = {
     'default': {
