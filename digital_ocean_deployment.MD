@@ -305,7 +305,7 @@ server {
     }
     
     location /media/ {
-        alias /home/djangoadmin/pyapps/django_project/static/;    
+        alias /home/djangoadmin/pyapps/django_project/media/;    
     }
 
     location / {
@@ -361,7 +361,7 @@ sudo systemctl restart nginx
 ```
 
 ### Media File Issue
-You may have some issues with images not showing up. I would suggest, deleting all data and starting fresh as well as removeing the "photos" folder in the "media folder"
+You may have some issues with images not showing up. I would suggest, deleting all data and starting fresh as well as removing the "photos" folder in the "media folder"
 ```
 sudo rm -rf media/photos
 ```
@@ -431,7 +431,8 @@ server {
 ```
 
 ### Reload NGINX & Gunicorn
-
+Note: Deactivate virtual env before restart
+We need to restart server after turn off droplet
 ```
 sudo systemctl restart nginx
 sudo systemctl restart gunicorn
