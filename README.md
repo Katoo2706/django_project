@@ -1,14 +1,20 @@
 ## Start
 
 Start project
-> django-admin startproject pretest
+```bash
+django-admin startproject pretest
+```
 
 
 Collect statistic
-> python manage.py collectstatic
+```bash
+python manage.py collectstatic
+```
 
 Runserver
-> python manage.py runserver
+```bash
+python manage.py runserver
+```
 
 #### Project structure:
 ```

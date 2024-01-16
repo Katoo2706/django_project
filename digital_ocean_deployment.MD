@@ -404,36 +404,3 @@ server {
 # sudo systemctl restart nginx
 # sudo systemctl restart gunicorn
 ```
-
-
-# Domain Setup
-
-Go to your domain registrar and create the following a record
-
-```
-@  A Record  YOUR_IP_ADDRESS
-www  CNAME  example.com
-```
-
-### Go to local_settings.py on the server and change "ALLOWED_HOSTS" to include the domain
-
-```
-ALLOWED_HOSTS = ['IP_ADDRESS', 'example.com', 'www.example.com']
-```
-
-### Edit /etc/nginx/sites-available/django_project
-
-```
-server {
-    listen: 80;
-    server_name xxx.xxx.xxx.xxx example.com www.example.com;
-}
-```
-
-### Reload NGINX & Gunicorn
-Note: Deactivate virtual env before restart
-We need to restart server after turn off droplet
-```
-sudo systemctl restart nginx
-sudo systemctl restart gunicorn
-```
